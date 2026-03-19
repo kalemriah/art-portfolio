@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects - Your Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+      <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/gallery">Gallery</a></li>
+      </ul>
+    </nav>
+    <a href="#table-of-content" class="back-to-toc-floating" aria-label="Back to Table of Contents">Back to Table of Content</a>
+    <h1>My Projects</h1>
+    <p>This is a list of all of the projects that i've worked on and links to the related project.</p>
+    <h2 id="table-of-content">Table of Contents</h2>
+    <ul>
+        <ul class="contact-links">
+        <li><a href="#react-native-app">React Native App</a></li>
+        <li><a href="#portfolio-website">Portfolio Website</a></li>
+        <li><a href="#ssh-nintendo-3ds">Using SSH on a Nintendo 3DS</a></li>
+        <li><a href="#openwebui">OpenWebUI</a></li>
+        <li><a href="#eventviewer-troubleshooting">EventViewer Troubleshooting</a></li>
+        <li><a href="#another-project">Another Project</a></li>
+    </ul>
+    <div id="react-native-app" class="project">
+        <h3>React Native App</h3>
+        <p class="tech-stack">Tech: React Native, MongoDB, Node.js</p>
+        <p>A mobile app I built using React Native and MongoDB. Features include user authentication, real-time data, and a clean UI.</p>
+        <p><a href="https://github.com/yourusername/project1">View on GitHub</a></p>
+    </div>
+    
+    <div id="portfolio-website" class="project">
+        <h3>Portfolio Website</h3>
+        <p class="tech-stack">Tech: Node.js, Express, Docker</p>
+        <p>This simple portfolio site built with Express.js and containerized with Docker.</p>
+        <p><a href="https://github.com/yourusername/portfolio">View on GitHub</a></p>
+    </div>
+    
+    <div id="ssh-nintendo-3ds" class="project">
+        <h3>Using SSH on a Nintendo 3DS</h3>
+        <p class="tech-stack">Tech: 3DS, DevKitPro, C, Libssh2, Libsctru, 3ds-mbedtls, Claude AI for help</p>
+        <p>The SSH tool is BudgieSSH: https://github.com/Maxbrick/budgieSSH. BudgieSSH must be built by the user using DevKitPro. Using DevKitPro, I cross-compiled the main.c file for BudgieSSH with libssh2 and 3ds-mbedtls, with my $SOURCE being 3dsvars.sh. I was unfamiliar with all of the above when I started, but I really wanted to use Ollama on my 3DS—which I was eventually able to accomplish, although I found it not particularly useful in practice. However, I did learn more about building .3dsx files, cross-compiling, and gained a better understanding of C and its use of headers. </p>
+        <p><a href="#">View on GitHub. -Currently being written up still- </a></p>
+    </div>
+
+    <div id="openwebui" class="project">
+        <h3>OpenWebUI - Building Full Conversation AI ChatBot Using GPU</h3>
+        <p class="tech-stack">Tech: OpenWebUI, Docker, Ollama, KokoroTTS, Whisper speech to text.</p>
+        <p>In this project, I use OpenWebUI to self-host a local conversational AI chatbot. The requirements are listed above; however, Whisper speech-to-text may already be installed on your system by default. I originally tried ElevenLabs, which was great for a demo—about 30 minutes of use—but I found it unfriendly for users who want to stick with free options. That's why I switched over to using KokoroTTS, which is not only faster but also completely free and open source. </p>
+        <p><a href="#">View on GitHub</a></p>
+    </div>
+
+    <div id="eventviewer-troubleshooting" class="project">
+        <h3>EventViewer Troubleshooting</h3>
+        <p class="tech-stack">Tech: EventViewer, Claude AI, BIOS, Screwdriver.</p>
+        <p>This project is really just me troubleshooting my machine after having issues with my CPU temp getting up to 90 degree C on startup, at least this is what my BIOS was showing, it would then shut down after about 3 minutes. This had started after getting my other project setup "OpenWebUI - Building Full Conversation AI ChatBot Using GPU". The issue was that I had acciently modified my BIOS settings on a restart without realizing it. The setting changed was my UEFI BIOS EZ Mode Fan Setting was set to Optimize, which was causing my fans to overclock on startup. Another issue that definintly was casuing problems was that my CPU was no longer seated corretly. This was most likely casued by my dog's tail slapping the side of my PC almost daily and I had to really looked in my PC case for a few months. So after reseating CPU and changing the BIOS settings within the 3 minute time span, I was back up on my desktop and able to check my EventViewer.</p>
+        <p><a href="#">View on GitHub</a></p>
+    </div>
+
+    <div id="another-project" class="project">
+        <h3>Another Project</h3>
+        <p class="tech-stack">Tech: Whatever you used</p>
+        <p>Brief description of what this project does and why it's cool.</p>
+        <p><a href="#">View on GitHub</a></p>
+    </div>
+
+</body>
+</html>
