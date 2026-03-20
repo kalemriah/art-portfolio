@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Projects - Your Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Kalem Wallace</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,59 +16,91 @@
       <li><a href="/gallery">Gallery</a></li>
       </ul>
     </nav>
-    <a href="#table-of-content" class="back-to-toc-floating" aria-label="Back to Table of Contents">Back to Table of Content</a>
     <h1>My Projects</h1>
-    <p>This is a list of all of the projects that i've worked on and links to the related project.</p>
-    <h2 id="table-of-content">Table of Contents</h2>
-    <ul>
+    <div class="section-card">
+        <p>A collection of things I've built, studied, and broken on purpose.</p>
+        <h2 id="table-of-content">Table of Contents</h2>
         <ul class="contact-links">
-        <li><a href="#react-native-app">React Native App</a></li>
-        <li><a href="#portfolio-website">Portfolio Website</a></li>
-        <li><a href="#ssh-nintendo-3ds">Using SSH on a Nintendo 3DS</a></li>
-        <li><a href="#openwebui">OpenWebUI</a></li>
-        <li><a href="#eventviewer-troubleshooting">EventViewer Troubleshooting</a></li>
-        <li><a href="#another-project">Another Project</a></li>
-    </ul>
-    <div id="react-native-app" class="project">
-        <h3>React Native App</h3>
-        <p class="tech-stack">Tech: React Native, MongoDB, Node.js</p>
-        <p>A mobile app I built using React Native and MongoDB. Features include user authentication, real-time data, and a clean UI.</p>
-        <p><a href="https://github.com/yourusername/project1">View on GitHub</a></p>
+            <li><a href="#portfolio-website">Portfolio Website</a></li>
+            <li><a href="#ssh-nintendo-3ds">SSH on a Nintendo 3DS</a></li>
+            <li><a href="#active-directory-lab">Windows Active Directory Lab</a></li>
+            <li><a href="#jira-lab">Jira Ticketing System Lab</a></li>
+            <li><a href="#yt-to-vault">YT to Vault</a></li>
+            <li><a href="#wheatly">Wheatly</a></li>
+            <li><a href="#bmo-skater">BMO Skater Game</a></li>
+            <li><a href="#yt-downloader">YouTube Downloader</a></li>
+            <li><a href="#google-cert-exercises">Google Cybersecurity Cert — Security Exercises</a></li>
+        </ul>
     </div>
-    
+
     <div id="portfolio-website" class="project">
         <h3>Portfolio Website</h3>
         <p class="tech-stack">Tech: Node.js, Express, Docker</p>
-        <p>This simple portfolio site built with Express.js and containerized with Docker.</p>
-        <p><a href="https://github.com/yourusername/portfolio">View on GitHub</a></p>
+        <p>This site. Built with Express.js and containerized with Docker. Serves static HTML/CSS with a lightweight Node backend.</p>
+        <p><a href="https://github.com/kalemriah/portfolio">View on GitHub</a></p>
     </div>
-    
+
     <div id="ssh-nintendo-3ds" class="project">
-        <h3>Using SSH on a Nintendo 3DS</h3>
-        <p class="tech-stack">Tech: 3DS, DevKitPro, C, Libssh2, Libsctru, 3ds-mbedtls, Claude AI for help</p>
-        <p>The SSH tool is BudgieSSH: https://github.com/Maxbrick/budgieSSH. BudgieSSH must be built by the user using DevKitPro. Using DevKitPro, I cross-compiled the main.c file for BudgieSSH with libssh2 and 3ds-mbedtls, with my $SOURCE being 3dsvars.sh. I was unfamiliar with all of the above when I started, but I really wanted to use Ollama on my 3DS—which I was eventually able to accomplish, although I found it not particularly useful in practice. However, I did learn more about building .3dsx files, cross-compiling, and gained a better understanding of C and its use of headers. </p>
-        <p><a href="#">View on GitHub. -Currently being written up still- </a></p>
+        <h3>SSH on a Nintendo 3DS</h3>
+        <p class="tech-stack">Tech: DevKitPro, C, libssh2, 3ds-mbedtls, libctru</p>
+        <p>Cross-compiled BudgieSSH for the Nintendo 3DS using DevKitPro. Built the .3dsx binary from source with libssh2 and 3ds-mbedtls, using 3dsvars.sh as the build environment. I went in knowing nothing about cross-compilation or C build systems — I wanted to run Ollama from a 3DS, which I eventually did. Came away with a real understanding of cross-compiling, C headers, and how toolchains work.</p>
+        <p><a href="#">View on GitHub — writeup in progress</a></p>
     </div>
 
-    <div id="openwebui" class="project">
-        <h3>OpenWebUI - Building Full Conversation AI ChatBot Using GPU</h3>
-        <p class="tech-stack">Tech: OpenWebUI, Docker, Ollama, KokoroTTS, Whisper speech to text.</p>
-        <p>In this project, I use OpenWebUI to self-host a local conversational AI chatbot. The requirements are listed above; however, Whisper speech-to-text may already be installed on your system by default. I originally tried ElevenLabs, which was great for a demo—about 30 minutes of use—but I found it unfriendly for users who want to stick with free options. That's why I switched over to using KokoroTTS, which is not only faster but also completely free and open source. </p>
+    <div id="active-directory-lab" class="project">
+        <h3>Windows Active Directory Lab</h3>
+        <p class="tech-stack">Tech: Microsoft Azure, Windows Server 2019, Active Directory</p>
+        <p>Deployed a Windows Server 2019 VM on Azure and built a full Active Directory environment from scratch. Configured dual domain controllers, managed Azure resource groups, set up AD users and groups, and tested provisioning workflows. Directly mirrors the enterprise AD environments I've supported professionally.</p>
+        <p><a href="https://github.com/kalemriah/Using-Microsoft-Azure-to-host-Windows-Active-Directory-lab">View on GitHub</a></p>
+    </div>
+
+    <div id="jira-lab" class="project">
+        <h3>Jira Ticketing System Lab</h3>
+        <p class="tech-stack">Tech: Microsoft Azure, Windows Server 2022, Jira</p>
+        <p>Spun up a Windows Server 2022 VM on Azure and self-hosted a Jira instance as a ticketing system lab. Covers Azure VM setup, resource group configuration, and Jira administration — reflecting the real-world helpdesk tooling I've used with BMC Helix and Remedy.</p>
+        <p><a href="https://github.com/kalemriah/Azure-Ticketing-System-Lab-Jira-">View on GitHub</a></p>
+    </div>
+
+    <div id="yt-to-vault" class="project">
+        <h3>YT to Vault</h3>
+        <p class="tech-stack">Tech: Python, Flask, Chrome Extension (JavaScript)</p>
+        <p>A Chrome extension paired with a local Python/Flask server that saves YouTube video transcripts directly into my Obsidian vault as formatted notes. One click in the browser triggers the server, pulls the transcript, and writes a timestamped markdown file. Built because I was losing information from videos I watched and wanted it searchable in my notes.</p>
         <p><a href="#">View on GitHub</a></p>
     </div>
 
-    <div id="eventviewer-troubleshooting" class="project">
-        <h3>EventViewer Troubleshooting</h3>
-        <p class="tech-stack">Tech: EventViewer, Claude AI, BIOS, Screwdriver.</p>
-        <p>This project is really just me troubleshooting my machine after having issues with my CPU temp getting up to 90 degree C on startup, at least this is what my BIOS was showing, it would then shut down after about 3 minutes. This had started after getting my other project setup "OpenWebUI - Building Full Conversation AI ChatBot Using GPU". The issue was that I had acciently modified my BIOS settings on a restart without realizing it. The setting changed was my UEFI BIOS EZ Mode Fan Setting was set to Optimize, which was causing my fans to overclock on startup. Another issue that definintly was casuing problems was that my CPU was no longer seated corretly. This was most likely casued by my dog's tail slapping the side of my PC almost daily and I had to really looked in my PC case for a few months. So after reseating CPU and changing the BIOS settings within the 3 minute time span, I was back up on my desktop and able to check my EventViewer.</p>
+    <div id="wheatly" class="project">
+        <h3>Wheatly</h3>
+        <p class="tech-stack">Tech: Python, Ollama, LM Studio, local LLM</p>
+        <p>Before I had access to tools like Claude Code, I built my own. Wheatly is a local AI assistant integrated directly with my Obsidian vault — handling daily note creation, habit tracking, task rollover, inactivity checks, weekly summaries, and a persistent memory system. It has a terminal UI and a chat interface, and started as a small automation script before growing into something I actually relied on daily.</p>
+        <p>A big part of this project was learning the hardware side of local LLM inference. My machine has an AMD RX 6600 (8GB VRAM), and getting that to work with local models turned into a deep dive into GPU compute. CUDA gets all the attention but it's NVIDIA-only — on AMD you're looking at ROCm, which has much patchier support. Most tools either didn't support it or required workarounds. LM Studio ended up being the only frontend that had solid ROCm support at the time, which is how I landed on it. I learned a lot about shader architecture, VRAM constraints, and why an 8GB card hits a wall fast with larger models.</p>
+        <p>Eventually I discovered that my hardware just wasn't going to cut it for the kind of inference I wanted — and moved to Claude Code. But the project taught me more about Python architecture, GPU compute, and local AI tooling than anything else I've built.</p>
         <p><a href="#">View on GitHub</a></p>
     </div>
 
-    <div id="another-project" class="project">
-        <h3>Another Project</h3>
-        <p class="tech-stack">Tech: Whatever you used</p>
-        <p>Brief description of what this project does and why it's cool.</p>
+    <div id="bmo-skater" class="project">
+        <h3>BMO Skater Game</h3>
+        <p class="tech-stack">Tech: Python, pygame</p>
+        <p>A side-scrolling skateboarding platformer built with pygame, featuring custom sprite animations I made myself — push, ollie, kickflip. Iterated through multiple versions: basic movement, platform collision, then a main menu and double jump. Built purely for fun, but it's where I got hands-on with game loops, sprite sheets, and state management in Python.</p>
         <p><a href="#">View on GitHub</a></p>
+    </div>
+
+    <div id="yt-downloader" class="project">
+        <h3>YouTube Downloader</h3>
+        <p class="tech-stack">Tech: Python, yt-dlp, tkinter</p>
+        <p>A simple GUI wrapper around yt-dlp that I built for my family so they could download videos without touching a terminal. Packaged it into a standalone .exe. Nothing complex — but sometimes the most useful thing you can build is something that saves someone you care about from having to Google anything.</p>
+        <p><a href="#">View on GitHub</a></p>
+    </div>
+
+    <div id="google-cert-exercises" class="project">
+        <h3>Google Cybersecurity Cert — Security Exercises</h3>
+        <p class="tech-stack">Skills: tcpdump, NIST CSF, Incident Response, Compliance Auditing</p>
+        <p>A set of hands-on security exercises completed as part of the Google Cybersecurity Professional Certificate:</p>
+        <ul>
+            <li><strong>DoS SYN Flood Analysis</strong> — Identified a SYN flood attack from packet logs, traced TCP handshake exhaustion to a 504 gateway timeout.</li>
+            <li><strong>Network Traffic Analysis</strong> — Used tcpdump to diagnose DNS port 53 unreachable errors, identified root cause and proposed firewall/DNS remediation.</li>
+            <li><strong>DDoS Incident Report (NIST CSF)</strong> — Full post-mortem of an ICMP flood attack mapped across all five NIST CSF functions: Identify, Protect, Detect, Respond, Recover.</li>
+            <li><strong>Compliance Audit</strong> — GDPR and PCI DSS gap analysis for a fictional company, flagging missing least privilege controls and unencrypted payment data.</li>
+        </ul>
     </div>
 
 </body>

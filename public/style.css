@@ -100,16 +100,6 @@ nav a:hover {
   color: #ffffff;
   cursor: pointer;
 }
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav li {
-    flex: 1 1 33%;
-  }
-}
 
 .card1 {
   background-color: #1b2b34;
@@ -132,12 +122,13 @@ nav a:hover {
 
 .card1 h1 {
   color: #6DBF76;
-  margin-right: auto;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .card1 img {
   display: block;
-  margin-right: auto;
+  margin: 0 auto;
   width: 200px;
   height: 200px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* example shadow */
@@ -249,21 +240,23 @@ code {
 }
 
 .certificates-table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
     width: 100%;
-    color: #B9B6B6;
-    border-radius: 2px ;
-    border-collapse: collapse;
     margin: 20px 0;
 }
 
 .certificate-item {
-    width: 50%;
+    flex: 1 1 250px;
     padding: 20px;
     text-align: center;
-    vertical-align: top;
 }
 
 .certificate-item img {
+    display: block;
+    margin: 0 auto;
     width: 100%;
     max-width: 300px;
     height: auto;
@@ -583,24 +576,43 @@ code {
     color: #B9B6B6;
 }
 @media (max-width: 768px) {
-    .certificates-table,
-    .certificate-item {
-        display: block;
-        width: 100%;
-    }
-    
-    .certificate-item {
-        margin-bottom: 20px;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: center;
-    }
-    
     .gallery {
         grid-template-columns: 1fr;
         padding: 10px;
     }
+}
 
+/* Section card — consistent wrapper for page content sections */
+.section-card {
+    background-color: #1b2b34;
+    color: #B9B6B6;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-family: monospace, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+}
+
+.section-card h1 {
+    color: #6DBF76;
+    font-size: 2rem;
+    text-align: left;
+    text-shadow: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding-bottom: 0;
+}
+
+.section-card h2 {
+    color: #6DBF76;
+    text-align: left;
+    margin-top: 0;
+}
+
+.section-card p,
+.section-card li {
+    color: #B9B6B6;
+}
+
+.card1 {
+    margin-bottom: 20px;
 }

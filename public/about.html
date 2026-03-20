@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Kalem Wallace Portfolio</title>
+    <title>About - Kalem Wallace</title>
 </head>
 <body>
     <nav>
@@ -15,29 +17,19 @@
       </ul>
     </nav>
     <h1>About Me</h1>
-    <p>My name is Kalem Wallace. I'm a tech support specialist with an interest in web development, and hands-on tinkering. Currently learning development and networking; passionate about building cool stuff. I am eager to learn and grow in this field, and I am confident that I have the skills and drive to be a successful Information Technology professional.</p>
-    <p>To build this blog I worked with VS Code, Docker, Nginx, HTML, CSS for a simple static site.</p>
-    <h2 id="table-of-content">Table of Contents</h2>
-    <ul>
-      <ul class="contact-links">
-        <li><a href="#my-interests">My Interests</a></li>
-        <li><a href="#my-background">My Background</a></li>
-        <li><a href="#what-im-up-to">What I'm up to</a></li>
-        <li><a href="#my-skills">My Skills</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-        <li><a href="#work-experience">Work Experience and What's It Like to Work with Me</a></li>
-    </ul>
-    <section id="my-interests">
-        <h2>My Interests</h2>
-        <!-- Content for My Interests (add as needed) -->
-    </section>
-
-    <section id="my-background">
-        <h2>My Background</h2>
-        <!-- Content for My Background (add as needed) -->
-    </section>
-
-    <section id="what-im-up-to">
+    <div class="section-card">
+        <p>My name is Kalem Wallace. I'm an IT support specialist based in Austin, TX with 2+ years of Tier 1 and 2 experience — most recently at TxHHSC, where I worked on an agency-wide IAM migration involving OKTA provisioning, MFA, and 40+ systems. I'm currently building toward cloud and identity management roles while studying for AZ-104.</p>
+        <p>Outside of tech I make art and I've been skateboarding for about 12 years. This site is both a portfolio and a gallery.</p>
+        <p>Stack I've worked with: FastAPI, Node.js, PostgreSQL, Docker, Python, Active Directory, Azure AD, OKTA, SCCM, Git.</p>
+        <h2 id="table-of-content">Table of Contents</h2>
+        <ul class="contact-links">
+            <li><a href="#what-im-up-to">What I'm up to</a></li>
+            <li><a href="#my-skills">My Skills</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#work-experience">Work Experience and What's It Like to Work with Me</a></li>
+        </ul>
+    </div>
+    <section id="what-im-up-to" class="section-card">
         <h2>What I'm up to</h2>
         <ul>
             <li>Learning web development and coding in general</li>
@@ -47,7 +39,7 @@
         </ul>
     </section>
 
-<section id="my-skills">
+<section id="my-skills" class="section-card">
   <h2>My Skills</h2>
   <table class="skills-table">
     <tr>
@@ -98,32 +90,30 @@
   </table>
 </section>
 
-    <section id="certificates">
+    <section id="certificates" class="section-card">
         <h2>Certificates</h2>
         <ul>
             <li>CompTIA A+ (April 2023 - April 2026)</li>
             <li>Google Cybersecurity Certificate (October 2023)</li>
         </ul>
 
-        <table class="certificates-table">
-            <tr>
-                <td class="certificate-item">
-                    <div class="project">
-                        <img src="images/CompTIA-A+-cert.png" alt="CompTIA A+ Certificate">
-                        <h3>CompTIA A+ Certified</h3>
-                    </div>
-                </td>
-                <td class="certificate-item">
-                    <div class="project">
-                        <img src="images/Google-Cert.png" alt="Google Cybersecurity Certificate">
-                        <h3>Google Certified</h3>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div class="certificates-table">
+            <div class="certificate-item">
+                <div class="project">
+                    <img src="images/CompTIA-A+-cert.png" alt="CompTIA A+ Certificate">
+                    <h3>CompTIA A+ Certified</h3>
+                </div>
+            </div>
+            <div class="certificate-item">
+                <div class="project">
+                    <img src="images/Google-Cert.png" alt="Google Cybersecurity Certificate">
+                    <h3>Google Certified</h3>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="work-experience">
+    <section id="work-experience" class="section-card">
         <h2>Work Experience and What's It Like to Work with Me</h2>
         <p>I have worked in technical support for over 2 years, where I have honed my skills in troubleshooting, customer service, and technical problem-solving. I am known for my patience and ability to explain complex concepts in simple terms.</p>
         <p>My friends and co-workers would describe me as a reliable team player who is always willing to help others. I believe in continuous learning and am always looking for ways to improve my skills and knowledge.</p>
