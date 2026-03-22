@@ -14,7 +14,7 @@ This is useful for development and testing purposes, but in production, it's adv
 So once uploaded to say azure, you will need to secure this"""
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:8084"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

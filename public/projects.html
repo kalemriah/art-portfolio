@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Kalem Wallace</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="/images/003.jpg">
 </head>
 <body>
     <nav>
@@ -22,14 +23,10 @@
         <h2 id="table-of-content">Table of Contents</h2>
         <ul class="contact-links">
             <li><a href="#portfolio-website">Portfolio Website</a></li>
-            <li><a href="#ssh-nintendo-3ds">SSH on a Nintendo 3DS</a></li>
             <li><a href="#active-directory-lab">Windows Active Directory Lab</a></li>
             <li><a href="#jira-lab">Jira Ticketing System Lab</a></li>
-            <li><a href="#yt-to-vault">YT to Vault</a></li>
-            <li><a href="#wheatly">Wheatly</a></li>
-            <li><a href="#bmo-skater">BMO Skater Game</a></li>
-            <li><a href="#yt-downloader">YouTube Downloader</a></li>
             <li><a href="#google-cert-exercises">Google Cybersecurity Cert — Security Exercises</a></li>
+            <li><a href="#misc">Misc / Personal</a></li>
         </ul>
     </div>
 
@@ -38,13 +35,6 @@
         <p class="tech-stack">Tech: Node.js, Express, Docker</p>
         <p>This site. Built with Express.js and containerized with Docker. Serves static HTML/CSS with a lightweight Node backend.</p>
         <p><a href="https://github.com/kalemriah/portfolio">View on GitHub</a></p>
-    </div>
-
-    <div id="ssh-nintendo-3ds" class="project">
-        <h3>SSH on a Nintendo 3DS</h3>
-        <p class="tech-stack">Tech: DevKitPro, C, libssh2, 3ds-mbedtls, libctru</p>
-        <p>Cross-compiled BudgieSSH for the Nintendo 3DS using DevKitPro. Built the .3dsx binary from source with libssh2 and 3ds-mbedtls, using 3dsvars.sh as the build environment. I went in knowing nothing about cross-compilation or C build systems — I wanted to run Ollama from a 3DS, which I eventually did. Came away with a real understanding of cross-compiling, C headers, and how toolchains work.</p>
-        <p><a href="#">View on GitHub — writeup in progress</a></p>
     </div>
 
     <div id="active-directory-lab" class="project">
@@ -61,36 +51,6 @@
         <p><a href="https://github.com/kalemriah/Azure-Ticketing-System-Lab-Jira-">View on GitHub</a></p>
     </div>
 
-    <div id="yt-to-vault" class="project">
-        <h3>YT to Vault</h3>
-        <p class="tech-stack">Tech: Python, Flask, Chrome Extension (JavaScript)</p>
-        <p>A Chrome extension paired with a local Python/Flask server that saves YouTube video transcripts directly into my Obsidian vault as formatted notes. One click in the browser triggers the server, pulls the transcript, and writes a timestamped markdown file. Built because I was losing information from videos I watched and wanted it searchable in my notes.</p>
-        <p><a href="#">View on GitHub</a></p>
-    </div>
-
-    <div id="wheatly" class="project">
-        <h3>Wheatly</h3>
-        <p class="tech-stack">Tech: Python, Ollama, LM Studio, local LLM</p>
-        <p>Before I had access to tools like Claude Code, I built my own. Wheatly is a local AI assistant integrated directly with my Obsidian vault — handling daily note creation, habit tracking, task rollover, inactivity checks, weekly summaries, and a persistent memory system. It has a terminal UI and a chat interface, and started as a small automation script before growing into something I actually relied on daily.</p>
-        <p>A big part of this project was learning the hardware side of local LLM inference. My machine has an AMD RX 6600 (8GB VRAM), and getting that to work with local models turned into a deep dive into GPU compute. CUDA gets all the attention but it's NVIDIA-only — on AMD you're looking at ROCm, which has much patchier support. Most tools either didn't support it or required workarounds. LM Studio ended up being the only frontend that had solid ROCm support at the time, which is how I landed on it. I learned a lot about shader architecture, VRAM constraints, and why an 8GB card hits a wall fast with larger models.</p>
-        <p>Eventually I discovered that my hardware just wasn't going to cut it for the kind of inference I wanted — and moved to Claude Code. But the project taught me more about Python architecture, GPU compute, and local AI tooling than anything else I've built.</p>
-        <p><a href="#">View on GitHub</a></p>
-    </div>
-
-    <div id="bmo-skater" class="project">
-        <h3>BMO Skater Game</h3>
-        <p class="tech-stack">Tech: Python, pygame</p>
-        <p>A side-scrolling skateboarding platformer built with pygame, featuring custom sprite animations I made myself — push, ollie, kickflip. Iterated through multiple versions: basic movement, platform collision, then a main menu and double jump. Built purely for fun, but it's where I got hands-on with game loops, sprite sheets, and state management in Python.</p>
-        <p><a href="#">View on GitHub</a></p>
-    </div>
-
-    <div id="yt-downloader" class="project">
-        <h3>YouTube Downloader</h3>
-        <p class="tech-stack">Tech: Python, yt-dlp, tkinter</p>
-        <p>A simple GUI wrapper around yt-dlp that I built for my family so they could download videos without touching a terminal. Packaged it into a standalone .exe. Nothing complex — but sometimes the most useful thing you can build is something that saves someone you care about from having to Google anything.</p>
-        <p><a href="#">View on GitHub</a></p>
-    </div>
-
     <div id="google-cert-exercises" class="project">
         <h3>Google Cybersecurity Cert — Security Exercises</h3>
         <p class="tech-stack">Skills: tcpdump, NIST CSF, Incident Response, Compliance Auditing</p>
@@ -101,6 +61,46 @@
             <li><strong>DDoS Incident Report (NIST CSF)</strong> — Full post-mortem of an ICMP flood attack mapped across all five NIST CSF functions: Identify, Protect, Detect, Respond, Recover.</li>
             <li><strong>Compliance Audit</strong> — GDPR and PCI DSS gap analysis for a fictional company, flagging missing least privilege controls and unencrypted payment data.</li>
         </ul>
+    </div>
+
+    <div id="misc" class="section-card">
+        <h2>Misc / Personal</h2>
+        <p>Smaller builds — fun, practice, or built for someone else.</p>
+
+        <div class="project">
+            <h3>YT to Vault</h3>
+            <p class="tech-stack">Tech: Python, Flask, Chrome Extension (JavaScript)</p>
+            <p>Chrome extension + local Python server that saves YouTube transcripts directly into my Obsidian vault as formatted notes. One click pulls the transcript and writes a timestamped markdown file. Built for personal use.</p>
+            <p><a href="#">View on GitHub</a></p>
+        </div>
+
+        <div class="project">
+            <h3>SSH on a Nintendo 3DS</h3>
+            <p class="tech-stack">Tech: DevKitPro, C, libssh2, 3ds-mbedtls, libctru</p>
+            <p>Cross-compiled BudgieSSH for the Nintendo 3DS using DevKitPro. Went in knowing nothing about cross-compilation or C build systems — came out with a working .3dsx binary and a real understanding of toolchains, C headers, and build environments.</p>
+            <p><a href="#">View on GitHub — writeup in progress</a></p>
+        </div>
+
+        <div class="project">
+            <h3>Wheatly</h3>
+            <p class="tech-stack">Tech: Python, Ollama, LM Studio, local LLM</p>
+            <p>Local AI assistant integrated with my Obsidian vault — habit tracking, task rollover, weekly summaries, persistent memory. Started small and grew into something I used daily. Also a deep dive into AMD ROCm for local LLM inference on non-NVIDIA hardware.</p>
+            <p><a href="#">View on GitHub</a></p>
+        </div>
+
+        <div class="project">
+            <h3>BMO Skater Game</h3>
+            <p class="tech-stack">Tech: Python, pygame</p>
+            <p>Side-scrolling skateboarding platformer with custom sprite animations — push, ollie, kickflip. Built for fun; got hands-on with game loops, sprite sheets, and state management in Python.</p>
+            <p><a href="#">View on GitHub</a></p>
+        </div>
+
+        <div class="project">
+            <h3>YouTube Downloader</h3>
+            <p class="tech-stack">Tech: Python, yt-dlp, tkinter</p>
+            <p>GUI wrapper around yt-dlp built for my family so they could download videos without touching a terminal. Packaged as a standalone .exe.</p>
+            <p><a href="#">View on GitHub</a></p>
+        </div>
     </div>
 
 </body>

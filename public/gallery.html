@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Gallery</title>
+    <title>Gallery - Kalem Wallace</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/jpeg" href="/images/003.jpg">
 </head>
-<body>
+<body class="gallery-page">
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/projects">Projects</a></li>
             <li><a href="/contact">Contact</a></li>
+            <li><a href="/projects">Projects</a></li>
             <li><a href="/gallery">Gallery</a></li>
         </ul>
     </nav>
@@ -26,6 +27,7 @@
         <div>
             <label for="sort-select">Sort by:</label>
             <select id="sort-select">
+                <option value="featured">Featured</option>
                 <option value="id">Order Added</option>
                 <option value="title">Title (A-Z)</option>
                 <option value="medium">Medium</option>
@@ -90,17 +92,21 @@
 
     <a href="#" class="top-page">↑</a>
 
+    <script src="/config.js"></script>
     <script>
         let allArtworks = [];
 
+        // Featured order: personal favourites first, then rest by ID
+        const featuredOrder = [62, 18, 12, 1, 52, 53, 54, 55, 2, 4, 57, 61, 39];
+
         async function loadArtworks() {
             try {
-                const response = await fetch('http://localhost:8000/artworks');
+                const response = await fetch(`${API_BASE_URL}/artworks`);
                 const data = await response.json();
                 allArtworks = data.artworks;
                 
                 populateFilters(allArtworks);
-                displayArtworks(allArtworks);
+                applyFilters();
                 
             } catch (error) {
                 console.error('Error loading artworks:', error);
@@ -241,7 +247,7 @@
                     const formData = new FormData();
                     formData.append('file', fileInput.files[0]);
                     
-                    const uploadResponse = await fetch('http://localhost:8000/upload', {
+                    const uploadResponse = await fetch(`${API_BASE_URL}/upload`, {
                         method: 'POST',
                         body: formData
                     });
@@ -256,9 +262,9 @@
                 }
                 
                 // Now save the artwork with the filelocation
-                const url = id 
-                    ? `http://localhost:8000/artworks/${id}`
-                    : 'http://localhost:8000/artworks';
+                const url = id
+                    ? `${API_BASE_URL}/artworks/${id}`
+                    : `${API_BASE_URL}/artworks`;
                 
                 const method = id ? 'PUT' : 'POST';
                 
@@ -292,7 +298,7 @@
             }
             
             try {
-                const response = await fetch(`http://localhost:8000/artworks/${id}`, {
+                const response = await fetch(`${API_BASE_URL}/artworks/${id}`, {
                     method: 'DELETE'
                 });
                 
@@ -404,8 +410,18 @@
 
         function sortArtworks(artworks, sortBy) {
             const sorted = [...artworks];
-            
+
             switch(sortBy) {
+                case 'featured':
+                    sorted.sort((a, b) => {
+                        const ai = featuredOrder.indexOf(a.id);
+                        const bi = featuredOrder.indexOf(b.id);
+                        if (ai !== -1 && bi !== -1) return ai - bi;
+                        if (ai !== -1) return -1;
+                        if (bi !== -1) return 1;
+                        return a.id - b.id;
+                    });
+                    break;
                 case 'title':
                     sorted.sort((a, b) => a.title.localeCompare(b.title));
                     break;
@@ -417,7 +433,7 @@
                     sorted.sort((a, b) => a.id - b.id);
                     break;
             }
-            
+
             return sorted;
         }
 
