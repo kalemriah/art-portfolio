@@ -5,49 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - Kalem Wallace</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="icon" type="image/jpeg" href="/images/003.jpg">
+    <link rel="icon" type="image/jpeg" href="/images/004.jpg">
 </head>
 <body class="gallery-page">
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/projects">Projects</a></li>
             <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
-
-    <h1>Art Gallery</h1>
-    
-    <!-- Filter/Sort Controls -->
-    <div class="gallery-controls">
-        <button id="add-new-btn" class="add-new-btn">+ Add New Artwork</button>
-        
-        <div>
-            <label for="sort-select">Sort by:</label>
-            <select id="sort-select">
-                <option value="featured">Featured</option>
-                <option value="id">Order Added</option>
-                <option value="title">Title (A-Z)</option>
-                <option value="medium">Medium</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="medium-filter">Filter by Medium:</label>
-            <select id="medium-filter">
-                <option value="all">All</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="color-filter">Filter by Color:</label>
-            <select id="color-filter">
-                <option value="all">All</option>
-            </select>
-        </div>
-    </div>
 
     <div id="gallery" class="gallery">
         <div class="loading">Loading artworks...</div>
@@ -63,379 +30,70 @@
         </div>
     </div>
 
-    <!-- CRUD Form Modal -->
-    <div id="form-modal" class="modal">
-        <div class="modal-form-content">
-            <span class="close-form">&times;</span>
-            <h2 id="form-title">Add New Artwork</h2>
-            <form id="artwork-form">
-                <input type="hidden" id="artwork-id">
-                
-                <label for="title-input">Title:</label>
-                <input type="text" id="title-input" required>
-                
-                <label for="file-input">Upload Image:</label>
-                <input type="file" id="file-input" accept="image/*">
-                <small style="color: #6DBF76;">Or enter file location manually:</small>
-                <input type="text" id="filelocation-input" placeholder="/public/images/###">
-                
-                <label for="medium-input">Medium:</label>
-                <input type="text" id="medium-input" placeholder="e.g., watercolor, collage">
-                
-                <label for="colors-input">Main Colors:</label>
-                <input type="text" id="colors-input" placeholder="e.g., blue, purple, green">
-                
-                <button type="submit" class="submit-btn">Save</button>
-            </form>
-        </div>
-    </div>
-
     <a href="#" class="top-page">↑</a>
 
-    <script src="/config.js"></script>
     <script>
-        let allArtworks = [];
-
-        // Featured order: personal favourites first, then rest by ID
-        const featuredOrder = [62, 18, 12, 1, 52, 53, 54, 55, 2, 4, 57, 61, 39];
-
         async function loadArtworks() {
             try {
-                const response = await fetch(`${API_BASE_URL}/artworks`);
+                const response = await fetch('/artworks.json');
                 const data = await response.json();
-                allArtworks = data.artworks;
-                
-                populateFilters(allArtworks);
-                applyFilters();
-                
+                displayArtworks(data.artworks);
             } catch (error) {
-                console.error('Error loading artworks:', error);
-                document.getElementById('gallery').innerHTML = 
-                    '<div class="loading">Error loading artworks. Please try again.</div>';
+                document.getElementById('gallery').innerHTML =
+                    '<div class="loading">Error loading artworks.</div>';
             }
-        }
-
-        function populateFilters(artworks) {
-            const mediums = new Set();
-            const colors = new Set();
-            
-            artworks.forEach(artwork => {
-                if (artwork.medium) {
-                    artwork.medium.split(',').forEach(m => mediums.add(m.trim()));
-                }
-                if (artwork.main_colors) {
-                    artwork.main_colors.split(',').forEach(c => colors.add(c.trim()));
-                }
-            });
-            
-            const mediumSelect = document.getElementById('medium-filter');
-            mediumSelect.innerHTML = '<option value="all">All</option>';
-            mediums.forEach(medium => {
-                const option = document.createElement('option');
-                option.value = medium;
-                option.textContent = medium;
-                mediumSelect.appendChild(option);
-            });
-            
-            const colorSelect = document.getElementById('color-filter');
-            colorSelect.innerHTML = '<option value="all">All</option>';
-            colors.forEach(color => {
-                const option = document.createElement('option');
-                option.value = color;
-                option.textContent = color;
-                colorSelect.appendChild(option);
-            });
         }
 
         function displayArtworks(artworks) {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
-            
-            if (artworks.length === 0) {
-                gallery.innerHTML = '<div class="loading">No artworks found</div>';
-                return;
-            }
-            
-            artworks.forEach(artwork => {
+
+            const numCols = 3;
+            const columns = Array.from({ length: numCols }, () => {
+                const col = document.createElement('div');
+                col.className = 'gallery-col';
+                return col;
+            });
+
+            artworks.forEach((artwork, i) => {
                 const card = document.createElement('div');
                 card.className = 'artwork-card';
-                
-                const imagePath = artwork.filelocation.replace('/public', '') + '.jpg';
-                
+                const imagePath = artwork.filelocation + '.jpg';
                 card.innerHTML = `
-                    <img src="${imagePath}" 
-                         alt="${artwork.title}" 
-                         data-id="${artwork.id}"
-                         style="cursor: pointer;"
-                         onerror="this.src='https://via.placeholder.com/300x250?text=${artwork.title}'">
+                    <img src="${imagePath}" alt="${artwork.title}" style="cursor: pointer;">
                     <div class="artwork-info">
                         <h3 class="artwork-title">${artwork.title}</h3>
-                        <p class="artwork-medium">${artwork.medium || 'Mixed media'}</p>
-                        <p class="artwork-colors">Colors: ${artwork.main_colors || 'Various'}</p>
-                        <div class="artwork-actions">
-                            <button class="edit-btn" data-id="${artwork.id}">Edit</button>
-                            <button class="delete-btn" data-id="${artwork.id}">Delete</button>
-                        </div>
+                        <p class="artwork-medium">${artwork.medium || ''}</p>
                     </div>
                 `;
-                
-                const img = card.querySelector('img');
-                img.addEventListener('click', () => openModal(artwork, imagePath));
-                
-                gallery.appendChild(card);
+                card.querySelector('img').addEventListener('click', () => openModal(artwork, imagePath));
+                columns[i % numCols].appendChild(card);
             });
 
-            // Add event listeners to edit/delete buttons
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(e.target.dataset.id);
-                    const artwork = allArtworks.find(a => a.id === id);
-                    openFormModal(artwork);
-                });
-            });
-
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(e.target.dataset.id);
-                    deleteArtwork(id);
-                });
-            });
+            columns.forEach(col => gallery.appendChild(col));
         }
 
         function openModal(artwork, imagePath) {
             const modal = document.getElementById('modal');
-            const modalImg = document.getElementById('modal-img');
-            const modalTitle = document.getElementById('modal-title');
-            const modalDetails = document.getElementById('modal-details');
-            
             modal.style.display = 'block';
-            modalImg.src = imagePath;
-            modalTitle.textContent = artwork.title;
-            modalDetails.innerHTML = `
-                <p><strong>Medium:</strong> ${artwork.medium || 'Mixed media'}</p>
-                <p><strong>Colors:</strong> ${artwork.main_colors || 'Various'}</p>
-            `;
+            document.getElementById('modal-img').src = imagePath;
+            document.getElementById('modal-title').textContent = artwork.title;
+            document.getElementById('modal-details').innerHTML =
+                artwork.medium ? `<p>${artwork.medium}</p>` : '';
         }
 
-        function openFormModal(artwork = null) {
-            const formModal = document.getElementById('form-modal');
-            const formTitle = document.getElementById('form-title');
-            const form = document.getElementById('artwork-form');
-            
-            if (artwork) {
-                formTitle.textContent = 'Edit Artwork';
-                document.getElementById('artwork-id').value = artwork.id;
-                document.getElementById('title-input').value = artwork.title;
-                document.getElementById('filelocation-input').value = artwork.filelocation;
-                document.getElementById('medium-input').value = artwork.medium || '';
-                document.getElementById('colors-input').value = artwork.main_colors || '';
-            } else {
-                formTitle.textContent = 'Add New Artwork';
-                form.reset();
-                document.getElementById('artwork-id').value = '';
-            }
-            
-            formModal.style.display = 'block';
-        }
-
-        async function saveArtwork(artworkData, id = null, fileInput = null) {
-            try {
-                let filelocation = artworkData.filelocation;
-                
-                // If file is uploaded, upload it first
-                if (fileInput && fileInput.files.length > 0) {
-                    const formData = new FormData();
-                    formData.append('file', fileInput.files[0]);
-                    
-                    const uploadResponse = await fetch(`${API_BASE_URL}/upload`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    if (!uploadResponse.ok) {
-                        alert('Error uploading image');
-                        return;
-                    }
-                    
-                    const uploadData = await uploadResponse.json();
-                    filelocation = uploadData.filelocation;
-                }
-                
-                // Now save the artwork with the filelocation
-                const url = id
-                    ? `${API_BASE_URL}/artworks/${id}`
-                    : `${API_BASE_URL}/artworks`;
-                
-                const method = id ? 'PUT' : 'POST';
-                
-                const response = await fetch(url, {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        ...artworkData,
-                        filelocation: filelocation
-                    })
-                });
-                
-                if (response.ok) {
-                    document.getElementById('form-modal').style.display = 'none';
-                    await loadArtworks();
-                    applyFilters();
-                } else {
-                    alert('Error saving artwork');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error saving artwork');
-            }
-        }
-
-        async function deleteArtwork(id) {
-            if (!confirm('Are you sure you want to delete this artwork?')) {
-                return;
-            }
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/artworks/${id}`, {
-                    method: 'DELETE'
-                });
-                
-                if (response.ok) {
-                    await loadArtworks();
-                    applyFilters();
-                } else {
-                    alert('Error deleting artwork');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error deleting artwork');
-            }
-        }
-
-        // Modal controls
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.getElementById('modal');
-            const closeBtn = document.querySelector('.close-modal');
             const modalImg = document.getElementById('modal-img');
-            
-            closeBtn.onclick = () => modal.style.display = 'none';
-            
-            modal.onclick = (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            };
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    modal.style.display = 'none';
-                    document.getElementById('form-modal').style.display = 'none';
-                }
-            });
-            
+
+            document.querySelector('.close-modal').onclick = () => modal.style.display = 'none';
+            modal.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') modal.style.display = 'none'; });
             modalImg.addEventListener('click', (e) => {
                 e.stopPropagation();
                 modalImg.classList.toggle('zoomed');
             });
-
-            // Form modal controls
-            const formModal = document.getElementById('form-modal');
-            const closeForm = document.querySelector('.close-form');
-            
-            closeForm.onclick = () => formModal.style.display = 'none';
-            
-            formModal.onclick = (e) => {
-                if (e.target === formModal) {
-                    formModal.style.display = 'none';
-                }
-            };
-
-            // Add new button
-            document.getElementById('add-new-btn').addEventListener('click', () => {
-                openFormModal();
-            });
-
-            // Form submit
-            document.getElementById('artwork-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const id = document.getElementById('artwork-id').value;
-                const fileInput = document.getElementById('file-input');
-                const artworkData = {
-                    title: document.getElementById('title-input').value,
-                    filelocation: document.getElementById('filelocation-input').value,
-                    medium: document.getElementById('medium-input').value || null,
-                    main_colors: document.getElementById('colors-input').value || null
-                };
-                
-                saveArtwork(artworkData, id || null, fileInput);
-            });
         });
-
-        // Sorting
-        document.getElementById('sort-select').addEventListener('change', (e) => {
-            const sortBy = e.target.value;
-            const filtered = filterArtworks();
-            const sorted = sortArtworks(filtered, sortBy);
-            displayArtworks(sorted);
-        });
-
-        // Filtering
-        document.getElementById('medium-filter').addEventListener('change', applyFilters);
-        document.getElementById('color-filter').addEventListener('change', applyFilters);
-
-        function applyFilters() {
-            const filtered = filterArtworks();
-            const sortBy = document.getElementById('sort-select').value;
-            const sorted = sortArtworks(filtered, sortBy);
-            displayArtworks(sorted);
-        }
-
-        function filterArtworks() {
-            const mediumFilter = document.getElementById('medium-filter').value;
-            const colorFilter = document.getElementById('color-filter').value;
-            
-            return allArtworks.filter(artwork => {
-                const mediumMatch = mediumFilter === 'all' || 
-                    (artwork.medium && artwork.medium.toLowerCase().includes(mediumFilter.toLowerCase()));
-                
-                const colorMatch = colorFilter === 'all' || 
-                    (artwork.main_colors && artwork.main_colors.toLowerCase().includes(colorFilter.toLowerCase()));
-                
-                return mediumMatch && colorMatch;
-            });
-        }
-
-        function sortArtworks(artworks, sortBy) {
-            const sorted = [...artworks];
-
-            switch(sortBy) {
-                case 'featured':
-                    sorted.sort((a, b) => {
-                        const ai = featuredOrder.indexOf(a.id);
-                        const bi = featuredOrder.indexOf(b.id);
-                        if (ai !== -1 && bi !== -1) return ai - bi;
-                        if (ai !== -1) return -1;
-                        if (bi !== -1) return 1;
-                        return a.id - b.id;
-                    });
-                    break;
-                case 'title':
-                    sorted.sort((a, b) => a.title.localeCompare(b.title));
-                    break;
-                case 'medium':
-                    sorted.sort((a, b) => (a.medium || '').localeCompare(b.medium || ''));
-                    break;
-                case 'id':
-                default:
-                    sorted.sort((a, b) => a.id - b.id);
-                    break;
-            }
-
-            return sorted;
-        }
 
         loadArtworks();
     </script>

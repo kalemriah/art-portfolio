@@ -1,36 +1,40 @@
-# Portfolio Site — Roadmap
+# Art Portfolio Site — Roadmap
 
-A personal portfolio and art gallery built with Node.js, Express, and Docker.
-This document tracks what's been done, what's in progress, and where the project is heading.
+An art-first gallery for original work. The gallery is user-focused — art front and center, gold aesthetic, no resume content on the page. Auth/SIEM layers are added as IAM portfolio signals under the hood, not as page content.
+
+**Stack:** Static HTML/CSS/JS · `artworks.json` · Vercel
+**Data:** Artwork metadata lives in `artworks.json` — no database, no Docker, no server dependency.
 
 ---
 
-## Phase 1 — Polish & Content (Current)
+## Phase 1 — Content & Layout ✅ Complete
 
-Get the site looking solid and all content accurate before touching security or deployment.
+Gallery is built and shipped. Art front and center.
 
 ### Done
-- [x] Overhauled projects.html — replaced weak entries with real projects
-- [x] h1 tags consistent across all pages (outside section-card, after nav)
-- [x] card1 h1 centered via CSS
-- [x] Removed empty About sections (My Interests, My Background) from TOC
-- [x] Fixed stale id="react-native-app" on contact page
-- [x] Wheatly description rewritten to reflect hardware limitations and GPU research
-- [x] Google Cybersecurity cert exercises added as a grouped project entry
+- [x] Masonry gallery layout
+- [x] Index page — Z-pattern photo layout, updated copy and voice
+- [x] About page restructured — art and interests focused
+- [x] Projects page rewritten
+- [x] Mobile nav overhaul
+- [x] Artworks 059–064 added, images in `public/images/`
+- [x] Favicon added (003.jpg — MushroomGuy)
+- [x] Git init, committed + pushed to GitHub
+
+---
+
+## Phase 1.5 — JSON Migration + Visual Direction (Current)
+
+Strip out the database and server dependency. Make it art-first.
 
 ### Todo
-- [ ] Finish 3DS SSH GitHub writeup, update the placeholder link
-- [x] Fill in About page content — Interests, Art, and What I'm Building sections
-- [x] Fix empty Tools field in Skills table (Systems Administration)
-- [x] Verify TxHHSC end date — confirmed Apr 2025
-- [ ] Test on mobile — nav wraps but full layout needs checking
-- [x] Add a favicon (003.jpg — MushroomGuy)
-- [x] Swap placeholder techsupport.png images on index cards — hello.jpg (self) and whatimuptо.jpg (skating)
-- [x] Index cards redesigned — masonry layout, Z-pattern button alignment, object-fit cover, updated copy and voice
-- [x] Work experience updated — Nordstrom Ebar added (Dec 2025–Present), all 5 jobs with real bullets
-- [x] Experience claim fixed — "2 years" corrected to "over a year" / "about a year" across site
-- [x] New artworks added (059–064), images in public/images/
-- [ ] Consider linking Google Cert .txt files or a PDF so people can read the actual work
+- [ ] Create `artworks.json` — migrate all artwork metadata out of Postgres
+- [ ] Replace `fetch('/artworks')` API call with local JSON import
+- [ ] Remove Docker, Express backend, Python API layer
+- [ ] Remove work experience / resume content from gallery pages — art only
+- [ ] Apply gold aesthetic — typography, color, layout pass
+- [ ] Test on mobile — full layout pass after style changes
+- [ ] Deploy to Vercel (free static hosting)
 
 ---
 
@@ -81,9 +85,9 @@ Get it off localhost and onto the internet properly.
 
 | Layer | Tech |
 |---|---|
-| Backend | Node.js, Express |
-| Frontend | HTML, CSS (vanilla) |
-| Container | Docker |
+| Frontend | HTML, CSS (vanilla), JS |
+| Data | `artworks.json` — static, no DB |
+| Hosting | Vercel (free, static) |
 | Auth (Phase 2) | OAuth 2.0, Azure Entra ID / OKTA |
 | SIEM (Phase 3) | Wazuh / Elastic |
-| Deploy (Phase 4) | Azure / GitHub Actions |
+| CI/CD (Phase 4) | GitHub Actions |

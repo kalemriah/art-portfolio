@@ -15,6 +15,21 @@ body {
   margin: 0 auto;
   padding: 20px;
   color: #4B6472;
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/images/006.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%) brightness(1.1);
+  opacity: 0.35;
+  transform: rotate(180deg);
+  z-index: -1;
 }
 
 .tab { 
@@ -103,8 +118,8 @@ nav a:hover {
 
 .card1 {
   background-color: #1b2b34;
-  color: #4B6472;
-  padding: 20px; 
+  color: #B9B6B6;
+  padding: 20px;
   border-radius: 12px;
   text-align: center;
   font-family: monospace, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
@@ -143,23 +158,23 @@ nav a:hover {
 
 /* Styling for the button */
 .contact-button {
+  display: block;
+  padding: 4px;
+  margin: 4px;
   background-color: #007177;
-  color: #6dbf76;
-  padding: 12px 28px;
+  color: #6DBF76;
   border-radius: 6px;
   letter-spacing: 2px;
   text-decoration: none;
   font-weight: bold;
   font-family: inherit;
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  width: 100px;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-section:nth-of-type(2) .contact-container {
-  align-self: flex-start;
-}
 
 .contact-button:hover {
   background-color: #4B6472;
@@ -203,17 +218,6 @@ h2 {
   }
 }
 
-.contact {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  text-align: left;
-}
-.contact h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
 .contact-links {
   list-style: none;
   padding: 0;
@@ -252,61 +256,11 @@ h2 {
   color: #999999;
 }
 
-.tech-stack {
-  font-size: 0.9em;
-  color: #999999;
-  font-style: italic;
-}
-
 code {
   background: #007177;
   padding: 2px 4px;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
-}
-
-.certificates-table {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    width: 100%;
-    margin: 20px 0;
-}
-
-.certificate-item {
-    flex: 1 1 250px;
-    padding: 20px;
-    text-align: center;
-}
-
-.certificate-item img {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.certificate-item p {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #B9B6B6;
-}
-
-.skills-table {
-    width: 100%;
-    color: #4B6472;
-    border-radius: 10px ;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-.skill-item {
-  height: 250px;
 }
 
 /* Gallery Styles */
@@ -315,12 +269,26 @@ code {
 }
 
 .gallery {
-    columns: 3 280px;
-    column-gap: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
     margin-top: 30px;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.gallery-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .gallery-col {
+        min-width: 200px;
+    }
 }
 /* Add New Button */
 .add-new-btn {
@@ -448,13 +416,10 @@ code {
     background: #1b2b34;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
     transition: transform 0.2s, box-shadow 0.2s;
-    border: 2px solid #4B6472;
-    break-inside: avoid;
-    display: inline-block;
+    border: 3px solid #007177;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .artwork-card:hover {
@@ -568,56 +533,18 @@ code {
     color: #007177;
 }
 
-/* Filter/Sort Controls */
-.gallery-controls {
-    background: #1b2b34;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.gallery-controls label {
-    color: #6DBF76;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.gallery-controls select {
-    background-color: #007177;
-    color: #6DBF76;
-    border: 2px solid #4B6472;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-family: monospace;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.gallery-controls select:hover {
-    background-color: #4B6472;
-    color: #ffffff;
-}
-
-.gallery-controls select option {
-    background-color: #1b2b34;
-    color: #B9B6B6;
-}
 @media (max-width: 768px) {
     .gallery {
-        columns: 2 200px;
-        padding: 10px;
+        gap: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .gallery {
-        columns: 1;
+        flex-direction: column;
+    }
+    .gallery-col {
+        width: 100%;
     }
 }
 
@@ -634,7 +561,7 @@ code {
 .section-card h1 {
     color: #6DBF76;
     font-size: 2rem;
-    text-align: left;
+    text-align: center;
     text-shadow: none;
     font-weight: bold;
     letter-spacing: 2px;
